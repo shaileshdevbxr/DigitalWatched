@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital | Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: rgba(195, 119, 91, 0.473);
+        }
+        i{
+            
+            width: 500px;
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+            top: 30%;
+            left: 33%;
+            border-radius: 4px;
+            justify-content: center;
+            align-items: center;
+        }
+        div {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+            top: 30%;
+            left: 33%;
+            border-radius: 4px;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            box-sizing: border-box;
+            height: 200px;
+            width: 500px;
+            font-size: 30px;
+            box-shadow: -6px -5px 5px gray, 6px 5px 5px #808080;
+            background-image: linear-gradient(60deg, red, white, green, blue, white, cyan);
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 4px transparent;
+            letter-spacing: 5px;
+        }
+        @media(max-width:899px){
+            div{
+                left: 4%;
+                width: 400px;
+
+            }
+            i{
+                left: 4%;
+                width: 400px;
+                font-size: 19px;
+            }
+            
+        }
+        @media(max-width:489px){
+            div{
+                left: 10%;
+                width: 550px;
+
+            }
+            i{
+                left: 10%;
+                width: 550px;
+                font-size: 17px;
+            }
+            
+        }
+    </style>
+</head>
+
+<body>
+    <i>The Digital Watch develop by shailesh babu</i>
+    <div id="container">
+
+    </div>
+    <script>
+        function showTime() {
+            let newdate = new Date();
+            let currentDate = newdate.getDate();
+            let currentMonth = newdate.getMonth();
+            currentMonth = currentMonth + 1;
+            let currentYear = newdate.getFullYear();
+
+            let currentHours = newdate.getHours();
+            let currentMintues = newdate.getMinutes();
+            let currentSeconds = newdate.getSeconds();
+            let session = 'AM';
+
+            let LineBreaks = document.getElementById('container').innerHTML = '<br/>';
+
+            if (currentDate < 10) {
+                currentDate = '0' + currentDate;
+            }
+            if (currentMonth < 10) {
+                currentMonth = '0' + currentMonth;
+            }
+
+            if (currentHours == 00) {
+                currentHours = 12;
+            }
+            if (currentHours > 12) {
+                currentHours = currentHours - 12;
+                session = 'PM'
+            }
+            else if (currentHours < 10) {
+                currentHours = '0' + currentHours;
+            }
+            if (currentMintues < 10) {
+                currentMintues = '0' + currentMintues;
+            }
+            if (currentSeconds < 10) {
+                currentSeconds = '0' + currentSeconds;
+            }
+            let result = document.getElementById('container').innerHTML = `
+            Date : ${currentDate}/${currentMonth}/${currentYear} ${LineBreaks} Time : ${currentHours}:${currentMintues}:${currentSeconds} ${session}`;
+
+
+        }
+        window.setInterval(showTime);
+
+        showTime();
+
+    </script>
+</body>
+
+</html>
